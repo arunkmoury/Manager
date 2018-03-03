@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
-
+import EmployeeCreate from './components/EmployeeCreate';
 
 const RouterComponent = () => {
     return (
@@ -14,11 +14,13 @@ const RouterComponent = () => {
                 <Scene key="main" navigationBarStyle={{ backgroundColor: '#8fff1f' }}>
                     <Scene 
                         rightTitle="Add"
-                        onRight={()=>console.log('right!!!')}
+                        onRight={()=> Actions.employeeCreate() }
                         key="employeeList" 
                         component={EmployeeList} 
-                        title="Employees" 
+                        title="Employees"
+                        initial
                     />
+                    <Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />
                 </Scene>
             </Scene>
         </Router>
