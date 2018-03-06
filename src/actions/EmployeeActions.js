@@ -31,3 +31,15 @@ export const employeesFetch = () => {
             });
     };
 };
+
+export const employeeSave = ({ name, phone, shift, uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return () => {
+        firebase.database().ref(`/users/${currentUser.uid}/employee/${uid}`)
+            .set({  name, phone, shift })
+            .then(() => {
+                Actions.main({ type: 'reset' });
+            });
+    }
+};
